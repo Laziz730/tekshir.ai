@@ -1,0 +1,10 @@
+{
+  "name": "Bolalar Xavfsizligi va Joylashuv Trackeri",
+  "description": "Ota-onalar uchun bolalar xavfsizligini ta'minlash va real vaqt rejimida ularning joylashuvini kuzatish tizimi",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

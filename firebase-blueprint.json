@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "App user profile, can be a Parent or a Child",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["parent", "child", "unassigned"] },
+        "connectionCode": { "type": "string" },
+        "connectedUserId": { "type": "string", "description": "UID of connected parent or child" },
+        "connectedName": { "type": "string", "description": "Name of connected parent or child" },
+        "isTrackingActive": { "type": "boolean" },
+        "trackIntervalMinutes": { "type": "number" },
+        "highAccuracy": { "type": "boolean" },
+        "alertMessage": { "type": "string" },
+        "currentLatitude": { "type": "number" },
+        "currentLongitude": { "type": "number" },
+        "lastLocationTime": { "type": "string" },
+        "batteryLevel": { "type": "number" },
+        "isOnline": { "type": "boolean" }
+      },
+      "required": ["uid", "email"]
+    },
+    "LocationLog": {
+      "title": "Location Log",
+      "description": "Historical GPS log of a child",
+      "type": "object",
+      "properties": {
+        "latitude": { "type": "number" },
+        "longitude": { "type": "number" },
+        "accuracy": { "type": "number" },
+        "timestamp": { "type": "string" },
+        "speed": { "type": "number" },
+        "batteryLevel": { "type": "number" }
+      },
+      "required": ["latitude", "longitude", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles for parents and children"
+    },
+    "/users/{userId}/history/{logId}": {
+      "schema": "LocationLog",
+      "description": "Historical breadcrumbs of the child's locations"
+    }
+  }
+}
